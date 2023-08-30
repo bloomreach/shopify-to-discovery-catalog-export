@@ -1,0 +1,15 @@
+query GetJob($job_id: ID!) {
+  node(id: $job_id) {
+    ... on BulkOperation {
+      id
+      status
+      errorCode
+      createdAt
+      completedAt
+      objectCount
+      fileSize
+      url
+      partialDataUrl
+    }
+  }
+}

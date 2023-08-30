@@ -1,0 +1,7 @@
+export BR_SHOPIFY_URL=
+export BR_SHOPIFY_PAT=
+export BR_ENVIRONMENT_NAME=staging
+export BR_ACCOUNT_ID=
+export BR_CATALOG_NAME=
+export BR_API_TOKEN=
+export BR_OUTPUT_DIR=

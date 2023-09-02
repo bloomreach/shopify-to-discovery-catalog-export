@@ -25,19 +25,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d_%h%m%s')"
       - name: Make run data directory
-        id: date
         run: mkdir ${{ steps.date.outputs.date }}
-      # - name: Update all records
-      #   run: |
-      #     python src/main.py
-      #   env:
-      #     BR_SHOPIFY_URL: ${{ vars.BR_SHOPIFY_URL }} ${{ steps.date.outputs.date }}
-      #     BR_SHOPIFY_PAT: ${{ secrets.BR_SHOPIFY_PAT }}
-      #     BR_ENVIRONMENT_NAME: ${{ vars.BR_ENVIRONMENT_NAME }}
-      #     BR_ACCOUNT_ID: ${{ vars.BR_ACCOUNT_ID }}
-      #     BR_CATALOG_NAME: ${{ vars.BR_CATALOG_NAME }}
-      #     BR_API_TOKEN: ${{ secrets.BR_API_TOKEN }}
-      #     BR_OUTPUT_DIR: "."
       - name: GraphQL Bulk Operation Export
         run: |
           python src/graphql.py
@@ -59,7 +47,7 @@ jobs:
           python src/patch.py --input-file=./${{ steps.date.outputs.date }}/3_bloomreach_products.jsonl.gz --output-file=./${{ steps.date.outputs.date }}/4_bloomreach_patch.jsonl.gz
         env:
           BR_SHOPIFY_URL: ${{ vars.BR_SHOPIFY_URL }}
-      - name: Transform to discovery patch
+      - name: Update all records
         run: |
           python src/feed.py --input-file=./${{ steps.date.outputs.date }}/4_bloomreach_patch.jsonl.gz
         env:

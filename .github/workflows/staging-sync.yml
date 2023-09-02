@@ -25,33 +25,33 @@ jobs:
         id: date
         run: echo "RUNNUM=$(date +'%Y-%m-%d_%H%M%S')" >> "$GITHUB_ENV"
       - name: Make run data directory
-        run: mkdir $RUNNUM
+        run: mkdir ${{ env.RUNNUM }}
       - name: GraphQL Bulk Operation Export
         run: |
           python src/graphql.py
         env:
           BR_SHOPIFY_URL: ${{ vars.BR_SHOPIFY_URL }}
           BR_SHOPIFY_PAT: ${{ secrets.BR_SHOPIFY_PAT }}
-          BR_OUTPUT_DIR: "./$RUNNUM/"
+          BR_OUTPUT_DIR: "./${{ env.RUNNUM }}/"
       - name: Transform to Shopify aggregated products
         run: |
-          python src/shopify_products.py --input-file=./$RUNNUM/0_shopify_bulk_op.jsonl.gz --output-file=./$RUNNUM/1_shopify_products.jsonl.gz
+          python src/shopify_products.py --input-file=./${{ env.RUNNUM }}/0_shopify_bulk_op.jsonl.gz --output-file=./${{ env.RUNNUM }}/1_shopify_products.jsonl.gz
       - name: Transform to discovery generic products
         run: |
-          python src/bloomreach_generics.py --input-file=./$RUNNUM/1_shopify_products.jsonl.gz --output-file=./$RUNNUM/2_bloomreach_base.jsonl.gz --pid-props="handle" --vid-props="sku"
+          python src/bloomreach_generics.py --input-file=./${{ env.RUNNUM }}/1_shopify_products.jsonl.gz --output-file=./${{ env.RUNNUM }}/2_bloomreach_base.jsonl.gz --pid-props="handle" --vid-props="sku"
       - name: Transform to discovery products
         run: |
-          python src/bloomreach_products.py --input-file=./$RUNNUM/2_bloomreach_base.jsonl.gz --output-file=./$RUNNUM/3_bloomreach_products.jsonl.gz
+          python src/bloomreach_products.py --input-file=./${{ env.RUNNUM }}/2_bloomreach_base.jsonl.gz --output-file=./${{ env.RUNNUM }}/3_bloomreach_products.jsonl.gz
         env:
           BR_SHOPIFY_URL: ${{ vars.BR_SHOPIFY_URL }}
       - name: Transform to discovery patch
         run: |
-          python src/patch.py --input-file=./$RUNNUM/3_bloomreach_products.jsonl.gz --output-file=./$RUNNUM/4_bloomreach_patch.jsonl.gz
+          python src/patch.py --input-file=./${{ env.RUNNUM }}/3_bloomreach_products.jsonl.gz --output-file=./${{ env.RUNNUM }}/4_bloomreach_patch.jsonl.gz
         env:
           BR_SHOPIFY_URL: ${{ vars.BR_SHOPIFY_URL }}
       - name: Update all records
         run: |
-          python src/feed.py --input-file=./$RUNNUM/4_bloomreach_patch.jsonl.gz
+          python src/feed.py --input-file=./${{ env.RUNNUM }}/4_bloomreach_patch.jsonl.gz
         env:
           BR_ENVIRONMENT_NAME: ${{ vars.BR_ENVIRONMENT_NAME }}
           BR_ACCOUNT_ID: ${{ vars.BR_ACCOUNT_ID }}

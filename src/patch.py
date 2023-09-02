@@ -32,6 +32,16 @@ def create_add_product_op(product):
 def main(fp_in, fp_out):
   patch = create_patch_from_products_fp(fp_in)
 
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
+  
   # write JSONLines to stdout
   with gzip.open(fp_out, "wb") as file:
     writer = jsonlines.Writer(file)

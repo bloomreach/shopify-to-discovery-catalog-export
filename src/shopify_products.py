@@ -92,6 +92,16 @@ if __name__ == '__main__':
   import argparse
   from os import getenv
   
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
+
   parser = argparse.ArgumentParser(
     prog="Transform Shopify bulk operation jsonl file into aggregated products jsonl",
     description="Transforms Shopify bulk output of products and their associated objects (metafields, collections, variants, variants metafields) into a single aggregated Shopify product record."

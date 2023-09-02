@@ -144,6 +144,16 @@ def get_shopify_jsonl_fp(shop_url, api_version, token, output_dir, run_num=""):
 if __name__ == '__main__':
   import argparse
 
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
+
   parser = argparse.ArgumentParser(
     description="Extracts a full set of products and their categories from the shopify store and runs a full feed into a Bloomreach Discovery catalog.\n \nUses Shopify's GraphQL Bulk Operation API.\n \nDuring processing, it will save the Shopify bulk operation output jsonl file locally named with the BulkOperation ID value.\n \n From there, the file will run through different transforms to create a Bloomreach patch that is then run in full feed mode via the BR Feed API.\n \nEach transform step will save its intermediate output locally as well for debugging purposes prefixed with a step number.\n \nFor example:\n23453245234_0.jsonl\n23453245234_1_shopify_products.jsonl\n23453245234_2_generic_products.jsonl\n23453245234_3_br_products.jsonl\n23453245234_4_br_patch.jsonl"
   )

@@ -133,6 +133,16 @@ if __name__ == '__main__':
   import argparse
   from os import getenv
   
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
+  
   parser = argparse.ArgumentParser(
     description="transforms Shopify aggregated products into Bloomreach Product model with no reserved attribute mappings, apart from setting product and variant identifiers. The product and variant identifiers may be specified prior to running, however, they default to `handle` for the product identifier and `sku` for the variant identifier. All other shopify properties are prefixed with a namespace to prevent collisions with any Bloomreach reserved attributes. Product properties are prefixed with `sp.`, Product metafield properties are prefixed with `spm.`, Variant properties are prefixed with `sv.`, and Variant metafield properties are prefixed with `svm.`. This output may be loaded directly into a Bloomreach Discovery catalog as is."
   )

@@ -121,6 +121,16 @@ def main(fp_in, fp_out, shopify_url):
 if __name__ == '__main__':
   import argparse
   from os import getenv
+
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
   
   parser = argparse.ArgumentParser(
     description="Transforms generic products with custom logic specific to an individual catalog. This is more or less a place holder script to add any transformations necessary that need to be made on top of the generic product transforms. For instance, if shopify product tags are used in a special way, custom transforms can be created. Also, generic transforms can be overriden should it be necessary for a catalog specific behavior. The values of the shopify prefixed attributes should not be modified."

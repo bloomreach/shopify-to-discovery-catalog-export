@@ -1,4 +1,4 @@
-name: Staging Catalog Sync
+name: Production Catalog Sync
 
 on: 
     # schedule:

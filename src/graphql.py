@@ -131,7 +131,8 @@ def get_shopify_jsonl_fp(shop_url, api_version, token, output_dir, run_num=""):
 
   jsonl_url = context["url"]
   job_id_short = job_id.split('/')[-1]
-  jsonl_fp = output_dir + "/" + run_num + "_" + job_id_short + "_0_shopify_bulk_op.jsonl.gz"
+  
+  jsonl_fp = output_dir + "/0_shopify_bulk_op.jsonl.gz"
   logger.info("Saving jsonl file to: %s", jsonl_fp)
   download_file(jsonl_url, jsonl_fp)
 

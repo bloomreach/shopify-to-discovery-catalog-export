@@ -1,7 +1,7 @@
+import logging
 import gzip
 import json
 import jsonlines
-import logging
 
 logger = logging.getLogger(__name__)
 

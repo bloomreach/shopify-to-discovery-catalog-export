@@ -60,5 +60,5 @@ jobs:
       - name: Archive data files
         uses: actions/upload-artifact@v3
         with:
-          name: runnum-data-files
+          name: ${{ env.RUNNUM }}-data-files-data-files
           path: ${{ env.RUNNUM }}/*

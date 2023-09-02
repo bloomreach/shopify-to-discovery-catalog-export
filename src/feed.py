@@ -76,6 +76,16 @@ def br_check_status(job_id="", environment_name="", token=""):
 if __name__ == '__main__':
   import argparse
   from os import getenv
+
+  from sys import stdout
+  
+  # Define logger
+  loglevel = getenv('LOGLEVEL', 'INFO').upper()
+  logging.basicConfig(
+    stream=stdout, 
+    level=loglevel,
+    format="%(name)-12s %(asctime)s %(levelname)-8s %(filename)s:%(funcName)s %(message)s"
+  )
   
   parser = argparse.ArgumentParser(
     description="Makes a full feed API call using the patch jsonl as a request body using gzip compression."

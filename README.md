@@ -37,6 +37,28 @@ Additonal details about the transform phases
 
 ## Requirements
 
+### Shopify Access
+
+You will need an access token from Shopify.
+
+To get the access token, setup a custom app with required scope to read_products.
+
+[Create and install a custom app](https://help.shopify.com/en/manual/apps/app-types/custom-apps#create-and-install-a-custom-app)
+[Generate access tokens for custom apps in the Shopify admin](https://shopify.dev/docs/apps/auth/admin-app-access-tokens)
+
+Exact steps:
+1). Go to store admin interface
+2). Click Settings in bottom of left nav
+3). Click Apps and sales channels in the left nav
+4). Click Develop apps
+5). Click Create an app
+6). Give it a name like `Bloomreach Test`
+7). Click Configure Admin API scopes
+8). Select `read_products` as a scope
+9). Click Save
+10). Click Install app and confirm
+11). Click Reveal token once and use the value as the access token for this reference code.
+
 ### Setup project
 
 ```bash

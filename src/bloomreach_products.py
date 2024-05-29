@@ -2,6 +2,7 @@ import logging
 import gzip
 import json
 import jsonlines
+from os import getenv
 
 logger = logging.getLogger(__name__)
 

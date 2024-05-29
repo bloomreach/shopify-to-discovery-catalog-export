@@ -1,6 +1,7 @@
 import logging
 import polling
 import requests
+from os import getenv
 
 logger = logging.getLogger(__name__)
 

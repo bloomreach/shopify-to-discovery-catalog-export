@@ -36,7 +36,7 @@ mutation ExportDataJob {
                             storefrontId
                             tags
                             vendor
-                            collections(query:\"published_status:published\"){
+                            collections(query:"published_status:published"){
                                 edges{
                                     cursor
                                     node{

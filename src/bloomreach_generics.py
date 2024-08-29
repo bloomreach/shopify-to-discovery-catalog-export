@@ -30,7 +30,7 @@ def create_product(shopify_product, pid_identifiers = None, vid_identifiers = No
     #   attributes["sp." + prop] = v
 
   return {
-    "id": create_id(shopify_product, identifiers=pid_identifiers), 
+    "id": shopify_product["id"].split('/')[-1], 
     "attributes": create_attributes(shopify_product, "sp"), 
     "variants": create_variants(shopify_product, identifiers=vid_identifiers)
     }

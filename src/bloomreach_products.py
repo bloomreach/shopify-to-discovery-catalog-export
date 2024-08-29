@@ -9,7 +9,8 @@ logger = logging.getLogger(__name__)
 PRODUCT_MAPPINGS = [
   ["sp.vendor", "brand", lambda x: x],
   ["sp.descriptionHtml", "description", lambda x: x.strip()],
-  ["sp.title", "title", lambda x: x]
+  ["sp.title", "title", lambda x: x],
+  ["sp.priceRangeV2", "maxVariantPrice", lambda x: x["maxVariantPrice"]["amount"]]
 ]
 
 

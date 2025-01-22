@@ -187,4 +187,4 @@ if __name__ == '__main__':
   shopify_pat = args.shopify_pat
   output_dir = args.output_dir
 
-  get_shopify_jsonl_fp(shopify_url, '2022-04', shopify_pat, output_dir)
+  get_shopify_jsonl_fp(shopify_url, '2025-04', shopify_pat, output_dir)

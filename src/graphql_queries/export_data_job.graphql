@@ -43,7 +43,6 @@ mutation ExportDataJob {
                                         id
                                         handle
                                         title
-                                        productsCount
                                     }
                                 }
                             }

@@ -18,7 +18,7 @@ def main(shopify_url="",
          output_dir=""):
 
   run_num = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-  api_version = '2022-04'
+  api_version = '2025-04'
   shopify_jsonl_fp, job_id = get_shopify_jsonl_fp(shopify_url, api_version,
                                           shopify_pat, output_dir, run_num=run_num)
 

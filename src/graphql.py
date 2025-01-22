@@ -61,6 +61,7 @@ def export_jsonl(context):
     logger.info("GraphQL Bulk Operation not submitted, trying again after delay. Another operation already in progress: %s", result_json)
     return False
   else:
+    logger.error(result_json)
     raise RuntimeError("Unable to start ExportDataJob")
 
 

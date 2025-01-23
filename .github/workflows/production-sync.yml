@@ -58,7 +58,7 @@ jobs:
           BR_CATALOG_NAME: ${{ vars.BR_CATALOG_NAME }}
           BR_API_TOKEN: ${{ secrets.BR_API_TOKEN }}
       - name: Archive data files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.RUNNUM }}-data-files
           path: ${{ env.RUNNUM }}/*
